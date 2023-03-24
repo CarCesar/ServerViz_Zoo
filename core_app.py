@@ -31,6 +31,8 @@ def core_app(app_version, custom):
       with right_side:
         base = st.selectbox(label='Base de Dados', options=['IBUFRJ','MNRJP'])
         st.session_state['base']=base
+    else:
+      st.session_state['base'] = False
 
     if file != None and button_pressed:
       st.session_state['file'] = file
@@ -119,8 +121,8 @@ def core_app(app_version, custom):
     select1, select2, select3 = st.columns((4,2,2))
     time_col1, = st.columns(1)
 
-    if base:
-      title_col.header(app_version.title()+' - ' + base)
+    if st.session_state['base']:
+      title_col.header(app_version.title()+' - ' + st.session_state['base'])
     else:
       title_col.header(app_version.title())
 
